@@ -27,10 +27,15 @@ namespace FastTextWrapper {
         int32_t magic;
         int32_t version;
         in.read((char*)&(magic), sizeof(int32_t));
+        std::cout << "magic number from file: " << magic << " needed: " << FASTTEXT_FILEFORMAT_MAGIC_INT32 << std::endl;
+
         if (magic != FASTTEXT_FILEFORMAT_MAGIC_INT32) {
             return false;
         }
         in.read((char*)&(version), sizeof(int32_t));
+
+        std::cout << "version: " << version << " needed: " << FASTTEXT_VERSION << std::endl;
+
         if (version != FASTTEXT_VERSION) {
             return false;
         }
